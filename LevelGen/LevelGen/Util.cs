@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace LevelGen
 {
-    internal static class Util
+    public static class Util
     {
         public static List<Color> TerrainColors = new List<Color>()
         {

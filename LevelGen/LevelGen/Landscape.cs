@@ -19,6 +19,14 @@ namespace LevelGen
             Random rand = new Random();
             int seed = rand.Next();
 
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    map[x, y] = 300;
+                }
+            }
+
             List<Point> seeds = new List<Point>();
 
             int arg = width * height / 100;
@@ -117,7 +125,7 @@ namespace LevelGen
                 {
                     for (int y = 0; y < height; y++)
                     {
-                        if (map[x, y] == 0)
+                        if (map[x, y] == 300)
                         {
                             int c = 0;
 
@@ -126,7 +134,7 @@ namespace LevelGen
                                 if ((x + offsets[k, 0] < width && x + offsets[k, 0] >= 0) &&
                                     (y + offsets[k, 1] < height && y + offsets[k, 1] >= 0))
                                 {
-                                    if (map[x + offsets[k, 0], y + offsets[k, 1]] == 0) c++;
+                                    if (map[x + offsets[k, 0], y + offsets[k, 1]] == 300) c++;
                                 }
                             }
 
@@ -151,7 +159,7 @@ namespace LevelGen
 
                             if (c < 4)
                             {
-                                map[x, y] = 0;
+                                map[x, y] = 300;
                             }
                         }
                     }
@@ -164,7 +172,7 @@ namespace LevelGen
             }
             else
             {
-                map[0, 0] = 0;
+                map[0, 0] = 300;
             }
 
             if (map[0, height - 2] == 1)
@@ -173,7 +181,7 @@ namespace LevelGen
             }
             else
             {
-                map[0, height - 1] = 0;
+                map[0, height - 1] = 300;
             }
 
             if (map[width - 2, 0] == 1)
@@ -182,7 +190,7 @@ namespace LevelGen
             }
             else
             {
-                map[width - 1, 0] = 0;
+                map[width - 1, 0] = 300;
             }
 
             if (map[width - 2, height - 2] == 1)
@@ -191,7 +199,7 @@ namespace LevelGen
             }
             else
             {
-                map[width - 1, height - 1] = 0;
+                map[width - 1, height - 1] = 300;
             }
         }
 
@@ -209,7 +217,7 @@ namespace LevelGen
                     {
                         for (int i = 0; i < 8; i++)
                         {
-                            if (map[x + offsets[i, 0], y + offsets[i, 1]] == 0)
+                            if (map[x + offsets[i, 0], y + offsets[i, 1]] == 300)
                             {
                                 map[x, y] = 2;
                                 break;

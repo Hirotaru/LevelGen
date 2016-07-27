@@ -12,7 +12,7 @@ namespace LevelGen
 
         static List<Room> rooms;
 
-        static int mapDefaultValue = 0;
+        static int mapDefaultValue = 300;
 
         public Map(int width, int height)
         {
