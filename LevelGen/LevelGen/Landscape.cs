@@ -9,10 +9,6 @@ namespace LevelGen
     using static Math;
     public class Landscape
     {
-
-        int[,] colormap;
-        int[,] waterColors;
-
         public static int[,] MapGeneration(int width, int height)
         {
             int[,] map = new int[width, height];
@@ -23,19 +19,19 @@ namespace LevelGen
             {
                 for (int y = 0; y < height; y++)
                 {
-                    map[x, y] = 300;
+                    map[x, y] = Util.mapDefaultValue;
                 }
             }
 
             List<Point> seeds = new List<Point>();
 
-            int arg = width * height / 100;
+            int arg = width * height / 90;
 
-            for (int i = 0; i < Ceiling(Sin(arg) + Cos(arg) + arg / 10) + 5; i++)
+            for (int i = 0; i < Ceiling(Sin(arg) + Cos(arg) + arg / 8) + 5; i++)
             {
                 Point t = new Point(rand.Next(0, width), rand.Next(0, height));
                 seeds.Add(t);
-                map[seeds[i].X, seeds[i].Y] = 1;
+                map[seeds[i].X, seeds[i].Y] = Util.groundDefaultValue;
             }
 
             int b = (int)(Sqrt(arg) + arg / 15) * 100;
@@ -46,7 +42,7 @@ namespace LevelGen
                 {
 
                     int dir = rand.Next(0, 4);
-                    int val = 1;
+                    int val = Util.groundDefaultValue;
 
                     switch (dir)
                     {
@@ -125,7 +121,7 @@ namespace LevelGen
                 {
                     for (int y = 0; y < height; y++)
                     {
-                        if (map[x, y] == 300)
+                        if (map[x, y] == Util.mapDefaultValue)
                         {
                             int c = 0;
 
@@ -134,13 +130,13 @@ namespace LevelGen
                                 if ((x + offsets[k, 0] < width && x + offsets[k, 0] >= 0) &&
                                     (y + offsets[k, 1] < height && y + offsets[k, 1] >= 0))
                                 {
-                                    if (map[x + offsets[k, 0], y + offsets[k, 1]] == 300) c++;
+                                    if (map[x + offsets[k, 0], y + offsets[k, 1]] == Util.mapDefaultValue) c++;
                                 }
                             }
 
                             if (c < 4)
                             {
-                                map[x, y] = 1;
+                                map[x, y] = Util.groundDefaultValue;
                             }
 
                         }
@@ -159,47 +155,47 @@ namespace LevelGen
 
                             if (c < 4)
                             {
-                                map[x, y] = 300;
+                                map[x, y] = Util.mapDefaultValue;
                             }
                         }
                     }
                 }
             }
 
-            if (map[0, 1] == 1)
+            if (map[0, 1] == Util.groundDefaultValue)
             {
-                map[0, 0] = 1;
+                map[0, 0] = Util.groundDefaultValue;
             }
             else
             {
-                map[0, 0] = 300;
+                map[0, 0] = Util.mapDefaultValue;
             }
 
-            if (map[0, height - 2] == 1)
+            if (map[0, height - 2] == Util.groundDefaultValue)
             {
-                map[0, height - 1] = 1;
+                map[0, height - 1] = Util.groundDefaultValue;
             }
             else
             {
-                map[0, height - 1] = 300;
+                map[0, height - 1] = Util.mapDefaultValue;
             }
 
-            if (map[width - 2, 0] == 1)
+            if (map[width - 2, 0] == Util.groundDefaultValue)
             {
-                map[width - 1, 0] = 1;
+                map[width - 1, 0] = Util.groundDefaultValue;
             }
             else
             {
-                map[width - 1, 0] = 300;
+                map[width - 1, 0] = Util.mapDefaultValue;
             }
 
-            if (map[width - 2, height - 2] == 1)
+            if (map[width - 2, height - 2] == Util.groundDefaultValue)
             {
-                map[width - 1, height - 1] = 1;
+                map[width - 1, height - 1] = Util.groundDefaultValue;
             }
             else
             {
-                map[width - 1, height - 1] = 300;
+                map[width - 1, height - 1] = Util.mapDefaultValue;
             }
         }
 
@@ -209,17 +205,21 @@ namespace LevelGen
             { { -1, -1 }, { 0, -1 }, { 1, -1 }, { 1, 0 },
             { 1, 1 },{ 0, 1 },{ -1, 1 },{ -1, 0 }};
 
-            for (int x = 1; x < width - 1; x++)
+            for (int x = 0; x < width; x++)
             {
-                for (int y = 1; y < height - 1; y++)
+                for (int y = 0; y < height; y++)
                 {
-                    if (map[x, y] == 1)
+                    if (map[x, y] == Util.groundDefaultValue)
                     {
                         for (int i = 0; i < 8; i++)
                         {
-                            if (map[x + offsets[i, 0], y + offsets[i, 1]] == 300)
+                            if ((x + offsets[i, 0] >= width) || (x + offsets[i, 0] < 0) || (y + offsets[i, 1] >= height) || (y + offsets[i, 1] < 0))
                             {
-                                map[x, y] = 2;
+                                continue;
+                            }
+                            if (map[x + offsets[i, 0], y + offsets[i, 1]] == Util.mapDefaultValue)
+                            {
+                                map[x, y] = Util.shoreDefaultValue;
                                 break;
                             }
                         }
@@ -227,8 +227,5 @@ namespace LevelGen
                 }
             }
         }
-
-
-
     }
 }

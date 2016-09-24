@@ -8,34 +8,60 @@ namespace LevelGen
 {
     public static class Util
     {
+        public static readonly int[,] offsets = new int[8, 2]
+            { { -1, -1 }, { 0, -1 }, { 1, -1 }, { 1, 0 },
+            { 1, 1 },{ 0, 1 },{ -1, 1 },{ -1, 0 }};
+
+        public const int mapDefaultValue = -1;
+        public const int groundDefaultValue = 1;
+        public const int shoreDefaultValue = 2;
+
         public static List<Color> TerrainColors = new List<Color>()
         {
-            Color.FromArgb(126, 64, 25),
-            Color.FromArgb(129, 64, 25),
-            Color.FromArgb(132, 64, 25),
+            Color.FromArgb(126, 62, 25),
+            Color.FromArgb(127, 62, 25),
+            Color.FromArgb(129, 64, 27),
+            Color.FromArgb(131, 64, 27),
+            Color.FromArgb(132, 66, 29),
+            Color.FromArgb(134, 66, 29),
             Color.FromArgb(126, 67, 25),
-            Color.FromArgb(132, 67, 25),
-            Color.FromArgb(129, 67, 25),
+            Color.FromArgb(128, 67, 25),
+            Color.FromArgb(132, 67, 27),
+            Color.FromArgb(134, 67, 27),
+            Color.FromArgb(129, 67, 29),
+            Color.FromArgb(131, 67, 29),
             Color.FromArgb(126, 70, 25),
-            Color.FromArgb(129, 70, 25),
-            Color.FromArgb(132, 70, 25),
+            Color.FromArgb(128, 70, 25),
+            Color.FromArgb(129, 72, 27),
+            Color.FromArgb(131, 72, 27),
+            Color.FromArgb(132, 74, 29),
+            Color.FromArgb(134, 74, 29),
 
         };
 
         static int min = 0;
-        static int max = 8;
+        static int max = 4;
 
         public static List<Color> WaterColors = new List<Color>()
         {
             Color.FromArgb(0, 146, 179),
-            Color.FromArgb(0, 149, 179),
-            Color.FromArgb(0, 152, 179),
+            Color.FromArgb(0, 148, 179),
+            Color.FromArgb(0, 149, 180),
+            Color.FromArgb(0, 151, 180),
+            Color.FromArgb(0, 152, 181),
+            Color.FromArgb(0, 154, 181),
             Color.FromArgb(0, 146, 182),
-            Color.FromArgb(0, 149, 182),
-            Color.FromArgb(0, 152, 182),
+            Color.FromArgb(0, 148, 182),
+            Color.FromArgb(0, 149, 183),
+            Color.FromArgb(0, 151, 183),
+            Color.FromArgb(0, 152, 184),
+            Color.FromArgb(0, 154, 184),
             Color.FromArgb(0, 146, 185),
-            Color.FromArgb(0, 149, 185),
-            Color.FromArgb(0, 152, 185),
+            Color.FromArgb(0, 148, 185),
+            Color.FromArgb(0, 149, 186),
+            Color.FromArgb(0, 151, 186),
+            Color.FromArgb(0, 152, 187),
+            Color.FromArgb(0, 154, 187),
         };
 
         public static float Distance(Point a, Point b)
@@ -46,6 +72,17 @@ namespace LevelGen
         public static void MapSmoothing(int[,] map, int width, int height, int[,] colormap, int[,] waterColors)
         {
             Random rand = new Random(DateTime.Now.Millisecond);
+
+            if (colormap == null)
+            {
+                colormap = new int[width, height];
+            }
+
+            if (waterColors == null)
+            {
+                waterColors = new int[width, height];
+            }
+
 
             int uncolored = 0;
             int uncoloredWater = 0;

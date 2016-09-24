@@ -8,7 +8,6 @@ namespace LevelGen
 {
     public partial class Map
     {
-
         public static int[,] Generate(int roomsCount, int width, int height)
         {
             Map.width = width;
@@ -22,7 +21,7 @@ namespace LevelGen
             {
                 for (int y = 0; y < height; y++)
                 {
-                    map[x, y] = mapDefaultValue;
+                    map[x, y] = Util.mapDefaultValue;
                 }
             }
 
@@ -32,7 +31,7 @@ namespace LevelGen
                 {
                     for (int y = rooms[i].Y; y <= rooms[i].Y + rooms[i].H; y++)
                     {
-                        map[x, y] = 1;
+                        map[x, y] = Util.groundDefaultValue;
                     }
                 }
             }
@@ -55,7 +54,7 @@ namespace LevelGen
             {
                 for (int y = 1; y < height - 1; y++)
                 {
-                    if (map[x, y] == mapDefaultValue)
+                    if (map[x, y] == Util.mapDefaultValue)
                     {
                         for (int i = 0; i < 8; i++)
                         {
@@ -111,7 +110,7 @@ namespace LevelGen
                         int c = 0;
                         for (int i = 0; i < 8; i++)
                         {
-                            if (map[x + offsets[i, 0], y + offsets[i, 1]] != mapDefaultValue)
+                            if (map[x + offsets[i, 0], y + offsets[i, 1]] != Util.mapDefaultValue)
                             {
                                 c++;
 
@@ -142,7 +141,7 @@ namespace LevelGen
 
                             int d = 0;
 
-                            while (map[p.X - d, p.Y] == mapDefaultValue || map[p.X - d, p.Y - 1] == mapDefaultValue || map[p.X - d, p.Y + 1] == mapDefaultValue)
+                            while (map[p.X - d, p.Y] == Util.mapDefaultValue || map[p.X - d, p.Y - 1] == Util.mapDefaultValue || map[p.X - d, p.Y + 1] == Util.mapDefaultValue)
                             {
                                 d++;
 
@@ -168,7 +167,7 @@ namespace LevelGen
                         {
                             Point p = new Point(rooms[i].X + rand.Next(1, rooms[i].W), rooms[i].Y - 1);
                             int d = 0;
-                            while (map[p.X, p.Y - d] == mapDefaultValue || map[p.X - 1, p.Y - d] == mapDefaultValue || map[p.X + 1, p.Y - d] == mapDefaultValue)
+                            while (map[p.X, p.Y - d] == Util.mapDefaultValue || map[p.X - 1, p.Y - d] == Util.mapDefaultValue || map[p.X + 1, p.Y - d] == Util.mapDefaultValue)
                             {
                                 d++;
 
@@ -198,7 +197,7 @@ namespace LevelGen
 
                             int d = 0;
 
-                            while (map[p.X - d, p.Y] == mapDefaultValue || map[p.X - d, p.Y - 1] == mapDefaultValue || map[p.X - d, p.Y + 1] == mapDefaultValue)
+                            while (map[p.X - d, p.Y] == Util.mapDefaultValue || map[p.X - d, p.Y - 1] == Util.mapDefaultValue || map[p.X - d, p.Y + 1] == Util.mapDefaultValue)
                             {
                                 d++;
 
@@ -224,7 +223,7 @@ namespace LevelGen
                         {
                             Point p = new Point(rooms[i].X + rand.Next(1, rooms[i].W), rooms[i].Y + rooms[i].H + 1);
                             int d = 1;
-                            while (map[p.X, p.Y + d] == mapDefaultValue || map[p.X - 1, p.Y + d] == mapDefaultValue || map[p.X + 1, p.Y + d] == mapDefaultValue)
+                            while (map[p.X, p.Y + d] == Util.mapDefaultValue || map[p.X - 1, p.Y + d] == Util.mapDefaultValue || map[p.X + 1, p.Y + d] == Util.mapDefaultValue)
                             {
                                 d++;
 
@@ -257,7 +256,7 @@ namespace LevelGen
 
                             int d = 0;
 
-                            while (map[p.X + d, p.Y] == mapDefaultValue || map[p.X + d, p.Y - 1] == mapDefaultValue || map[p.X + d, p.Y + 1] == mapDefaultValue)
+                            while (map[p.X + d, p.Y] == Util.mapDefaultValue || map[p.X + d, p.Y - 1] == Util.mapDefaultValue || map[p.X + d, p.Y + 1] == Util.mapDefaultValue)
                             {
                                 d++;
 
@@ -283,7 +282,7 @@ namespace LevelGen
                         {
                             Point p = new Point(rooms[i].X + rand.Next(1, rooms[i].W), rooms[i].Y - 1);
                             int d = 0;
-                            while (map[p.X, p.Y - d] == mapDefaultValue || map[p.X - 1, p.Y - d] == mapDefaultValue || map[p.X + 1, p.Y - d] == mapDefaultValue)
+                            while (map[p.X, p.Y - d] == Util.mapDefaultValue || map[p.X - 1, p.Y - d] == Util.mapDefaultValue || map[p.X + 1, p.Y - d] == Util.mapDefaultValue)
                             {
                                 d++;
 
@@ -313,7 +312,7 @@ namespace LevelGen
 
                             int d = 0;
 
-                            while (map[p.X + d, p.Y] == mapDefaultValue || map[p.X + d, p.Y - 1] == mapDefaultValue || map[p.X + d, p.Y + 1] == mapDefaultValue)
+                            while (map[p.X + d, p.Y] == Util.mapDefaultValue || map[p.X + d, p.Y - 1] == Util.mapDefaultValue || map[p.X + d, p.Y + 1] == Util.mapDefaultValue)
                             {
 
                                 d++;
@@ -340,7 +339,7 @@ namespace LevelGen
                         {
                             Point p = new Point(rooms[i].X + rand.Next(1, rooms[i].W), rooms[i].Y + rooms[i].H + 1);
                             int d = 0;
-                            while (map[p.X, p.Y + d] == mapDefaultValue || map[p.X - 1, p.Y + d] == mapDefaultValue || map[p.X + 1, p.Y + d] == mapDefaultValue)
+                            while (map[p.X, p.Y + d] == Util.mapDefaultValue || map[p.X - 1, p.Y + d] == Util.mapDefaultValue || map[p.X + 1, p.Y + d] == Util.mapDefaultValue)
                             {
                                 d++;
 
