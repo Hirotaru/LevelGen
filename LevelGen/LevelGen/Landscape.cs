@@ -19,15 +19,15 @@ namespace LevelGen
             {
                 for (int y = 0; y < height; y++)
                 {
-                    map[x, y] = Util.mapDefaultValue;
+                    map[x, y] = Util.waterDefaultValue;
                 }
             }
 
             List<Point> seeds = new List<Point>();
 
-            int arg = width * height / 90;
+            int arg = width * height / 85;
 
-            for (int i = 0; i < Ceiling(Sin(arg) + Cos(arg) + arg / 8) + 5; i++)
+            for (int i = 0; i < Ceiling(Sin(arg) + Cos(arg) + arg / 5.5) + 5; i++)
             {
                 Point t = new Point(rand.Next(0, width), rand.Next(0, height));
                 seeds.Add(t);
@@ -121,7 +121,7 @@ namespace LevelGen
                 {
                     for (int y = 0; y < height; y++)
                     {
-                        if (map[x, y] == Util.mapDefaultValue)
+                        if (map[x, y] == Util.waterDefaultValue)
                         {
                             int c = 0;
 
@@ -130,7 +130,7 @@ namespace LevelGen
                                 if ((x + offsets[k, 0] < width && x + offsets[k, 0] >= 0) &&
                                     (y + offsets[k, 1] < height && y + offsets[k, 1] >= 0))
                                 {
-                                    if (map[x + offsets[k, 0], y + offsets[k, 1]] == Util.mapDefaultValue) c++;
+                                    if (map[x + offsets[k, 0], y + offsets[k, 1]] == Util.waterDefaultValue) c++;
                                 }
                             }
 
@@ -155,7 +155,7 @@ namespace LevelGen
 
                             if (c < 4)
                             {
-                                map[x, y] = Util.mapDefaultValue;
+                                map[x, y] = Util.waterDefaultValue;
                             }
                         }
                     }
@@ -168,7 +168,7 @@ namespace LevelGen
             }
             else
             {
-                map[0, 0] = Util.mapDefaultValue;
+                map[0, 0] = Util.waterDefaultValue;
             }
 
             if (map[0, height - 2] == Util.groundDefaultValue)
@@ -177,7 +177,7 @@ namespace LevelGen
             }
             else
             {
-                map[0, height - 1] = Util.mapDefaultValue;
+                map[0, height - 1] = Util.waterDefaultValue;
             }
 
             if (map[width - 2, 0] == Util.groundDefaultValue)
@@ -186,7 +186,7 @@ namespace LevelGen
             }
             else
             {
-                map[width - 1, 0] = Util.mapDefaultValue;
+                map[width - 1, 0] = Util.waterDefaultValue;
             }
 
             if (map[width - 2, height - 2] == Util.groundDefaultValue)
@@ -195,7 +195,7 @@ namespace LevelGen
             }
             else
             {
-                map[width - 1, height - 1] = Util.mapDefaultValue;
+                map[width - 1, height - 1] = Util.waterDefaultValue;
             }
         }
 
@@ -217,7 +217,7 @@ namespace LevelGen
                             {
                                 continue;
                             }
-                            if (map[x + offsets[i, 0], y + offsets[i, 1]] == Util.mapDefaultValue)
+                            if (map[x + offsets[i, 0], y + offsets[i, 1]] == Util.waterDefaultValue)
                             {
                                 map[x, y] = Util.shoreDefaultValue;
                                 break;

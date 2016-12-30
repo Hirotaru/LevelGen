@@ -12,7 +12,7 @@ namespace LevelGen
             { { -1, -1 }, { 0, -1 }, { 1, -1 }, { 1, 0 },
             { 1, 1 },{ 0, 1 },{ -1, 1 },{ -1, 0 }};
 
-        public const int mapDefaultValue = -1;
+        public const int waterDefaultValue = -1;
         public const int groundDefaultValue = 1;
         public const int shoreDefaultValue = 2;
 
@@ -40,7 +40,7 @@ namespace LevelGen
         };
 
         static int min = 0;
-        static int max = 4;
+        static int max = 2;
 
         public static List<Color> WaterColors = new List<Color>()
         {

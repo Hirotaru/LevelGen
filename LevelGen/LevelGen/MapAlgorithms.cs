@@ -21,7 +21,7 @@ namespace LevelGen
             {
                 for (int y = 0; y < height; y++)
                 {
-                    map[x, y] = Util.mapDefaultValue;
+                    map[x, y] = Util.waterDefaultValue;
                 }
             }
 
@@ -54,7 +54,7 @@ namespace LevelGen
             {
                 for (int y = 1; y < height - 1; y++)
                 {
-                    if (map[x, y] == Util.mapDefaultValue)
+                    if (map[x, y] == Util.waterDefaultValue)
                     {
                         for (int i = 0; i < 8; i++)
                         {
@@ -79,7 +79,7 @@ namespace LevelGen
 
             for (int i = 0; i < roomsCount; i++)
             {
-                for (int j = 0; j < 1000; j++)
+                for (int j = 0; j < 20; j++)
                 {
                     int w = rand.Next(minRoomSize, maxRoomSize);
                     int h = rand.Next(minRoomSize, maxRoomSize);
@@ -90,6 +90,7 @@ namespace LevelGen
                     if (intersect == null)
                     {
                         rooms.Add(room);
+                        j = 20;
                     }
                 }
             }
@@ -110,7 +111,7 @@ namespace LevelGen
                         int c = 0;
                         for (int i = 0; i < 8; i++)
                         {
-                            if (map[x + offsets[i, 0], y + offsets[i, 1]] != Util.mapDefaultValue)
+                            if (map[x + offsets[i, 0], y + offsets[i, 1]] != Util.waterDefaultValue)
                             {
                                 c++;
 
@@ -141,7 +142,7 @@ namespace LevelGen
 
                             int d = 0;
 
-                            while (map[p.X - d, p.Y] == Util.mapDefaultValue || map[p.X - d, p.Y - 1] == Util.mapDefaultValue || map[p.X - d, p.Y + 1] == Util.mapDefaultValue)
+                            while (map[p.X - d, p.Y] == Util.waterDefaultValue || map[p.X - d, p.Y - 1] == Util.waterDefaultValue || map[p.X - d, p.Y + 1] == Util.waterDefaultValue)
                             {
                                 d++;
 
@@ -167,7 +168,7 @@ namespace LevelGen
                         {
                             Point p = new Point(rooms[i].X + rand.Next(1, rooms[i].W), rooms[i].Y - 1);
                             int d = 0;
-                            while (map[p.X, p.Y - d] == Util.mapDefaultValue || map[p.X - 1, p.Y - d] == Util.mapDefaultValue || map[p.X + 1, p.Y - d] == Util.mapDefaultValue)
+                            while (map[p.X, p.Y - d] == Util.waterDefaultValue || map[p.X - 1, p.Y - d] == Util.waterDefaultValue || map[p.X + 1, p.Y - d] == Util.waterDefaultValue)
                             {
                                 d++;
 
@@ -197,7 +198,7 @@ namespace LevelGen
 
                             int d = 0;
 
-                            while (map[p.X - d, p.Y] == Util.mapDefaultValue || map[p.X - d, p.Y - 1] == Util.mapDefaultValue || map[p.X - d, p.Y + 1] == Util.mapDefaultValue)
+                            while (map[p.X - d, p.Y] == Util.waterDefaultValue || map[p.X - d, p.Y - 1] == Util.waterDefaultValue || map[p.X - d, p.Y + 1] == Util.waterDefaultValue)
                             {
                                 d++;
 
@@ -223,7 +224,7 @@ namespace LevelGen
                         {
                             Point p = new Point(rooms[i].X + rand.Next(1, rooms[i].W), rooms[i].Y + rooms[i].H + 1);
                             int d = 1;
-                            while (map[p.X, p.Y + d] == Util.mapDefaultValue || map[p.X - 1, p.Y + d] == Util.mapDefaultValue || map[p.X + 1, p.Y + d] == Util.mapDefaultValue)
+                            while (map[p.X, p.Y + d] == Util.waterDefaultValue || map[p.X - 1, p.Y + d] == Util.waterDefaultValue || map[p.X + 1, p.Y + d] == Util.waterDefaultValue)
                             {
                                 d++;
 
@@ -256,7 +257,7 @@ namespace LevelGen
 
                             int d = 0;
 
-                            while (map[p.X + d, p.Y] == Util.mapDefaultValue || map[p.X + d, p.Y - 1] == Util.mapDefaultValue || map[p.X + d, p.Y + 1] == Util.mapDefaultValue)
+                            while (map[p.X + d, p.Y] == Util.waterDefaultValue || map[p.X + d, p.Y - 1] == Util.waterDefaultValue || map[p.X + d, p.Y + 1] == Util.waterDefaultValue)
                             {
                                 d++;
 
@@ -282,7 +283,7 @@ namespace LevelGen
                         {
                             Point p = new Point(rooms[i].X + rand.Next(1, rooms[i].W), rooms[i].Y - 1);
                             int d = 0;
-                            while (map[p.X, p.Y - d] == Util.mapDefaultValue || map[p.X - 1, p.Y - d] == Util.mapDefaultValue || map[p.X + 1, p.Y - d] == Util.mapDefaultValue)
+                            while (map[p.X, p.Y - d] == Util.waterDefaultValue || map[p.X - 1, p.Y - d] == Util.waterDefaultValue || map[p.X + 1, p.Y - d] == Util.waterDefaultValue)
                             {
                                 d++;
 
@@ -312,7 +313,7 @@ namespace LevelGen
 
                             int d = 0;
 
-                            while (map[p.X + d, p.Y] == Util.mapDefaultValue || map[p.X + d, p.Y - 1] == Util.mapDefaultValue || map[p.X + d, p.Y + 1] == Util.mapDefaultValue)
+                            while (map[p.X + d, p.Y] == Util.waterDefaultValue || map[p.X + d, p.Y - 1] == Util.waterDefaultValue || map[p.X + d, p.Y + 1] == Util.waterDefaultValue)
                             {
 
                                 d++;
@@ -339,7 +340,7 @@ namespace LevelGen
                         {
                             Point p = new Point(rooms[i].X + rand.Next(1, rooms[i].W), rooms[i].Y + rooms[i].H + 1);
                             int d = 0;
-                            while (map[p.X, p.Y + d] == Util.mapDefaultValue || map[p.X - 1, p.Y + d] == Util.mapDefaultValue || map[p.X + 1, p.Y + d] == Util.mapDefaultValue)
+                            while (map[p.X, p.Y + d] == Util.waterDefaultValue || map[p.X - 1, p.Y + d] == Util.waterDefaultValue || map[p.X + 1, p.Y + d] == Util.waterDefaultValue)
                             {
                                 d++;
 
